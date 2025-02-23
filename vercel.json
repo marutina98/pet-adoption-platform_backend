@@ -6,11 +6,17 @@
     },
     "routes": [{
         "src": "/(.*)",
-        "dest": "/api/index.php"
+        "dest": "/api/index.php",
+        "methods": ["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+          "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, access-control-allow-credentials"
+        }
     }],
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "true",
+        "APP_DEBUG": "false",
         "APP_URL": "https://pet-adoption-platformbackend.vercel.app",
         "APP_KEY": "base64:THz9fq6DaUx6nUle7mJyqZgR/fcDkAMlf2c+XoK8TYY=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
