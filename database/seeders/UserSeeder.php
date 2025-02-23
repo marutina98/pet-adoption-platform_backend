@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             */
             
             $adopterImageURL = $faker->fakeImgUrl($width = 1000, $height = 1000);
-            $adopterImage = file_get_contents($agencyImageURL);
+            $adopterImage = file_get_contents($adopterImageURL);
             $adopterImageBase64 = 'data:image/png;base64,' . base64_encode($agencyImage);
 
             PetAdopter::create([
