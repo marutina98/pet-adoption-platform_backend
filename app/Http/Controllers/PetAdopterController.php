@@ -57,7 +57,7 @@ class PetAdopterController extends Controller
 
                 $image = file_get_contents($picture->getRealPath());
                 $imageBase64 = 'data:image/png;base64,' . base64_encode($image);
-                $data['picture' = $imageBase64;
+                $data['picture'] = $imageBase64;
 
             }            
 
@@ -114,7 +114,7 @@ class PetAdopterController extends Controller
 
                 $image = file_get_contents($picture->getRealPath());
                 $imageBase64 = 'data:image/png;base64,' . base64_encode($image);
-                $data['picture' = $imageBase64;
+                $data['picture'] = $imageBase64;
 
             } 
 
