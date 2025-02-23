@@ -35,17 +35,17 @@ class AnimalSeeder extends Seeder
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \Mmo\Faker\FakeimgProvider($faker));
 
-        // Create 10 Animals for Each Animal Breed
+        // Create Animals for Each Animal Breed
 
         foreach ($animalTypes as $animalType) {
 
             $animalBreeds = AnimalBreed::where('animal_type_id', $animalType->id)->get();
 
-            // Create 10 Animals for each Animal Breed
+            // Create 1 Animals for each Animal Breed
 
             foreach ($animalBreeds as $animalBreed) {
 
-                for ($i = 0; $i < 10; $i++) { 
+                for ($i = 0; $i < 1; $i++) { 
                     
                     // Get Random Values
 
@@ -78,7 +78,9 @@ class AnimalSeeder extends Seeder
 
                     // Create Fake Images
 
-                    for ($j = 0; $j < 5; $j ++) {
+                    for ($j = 0; $j < 2; $j ++) {
+
+                        /*
 
                         $pictureFolder = 'public/storage/' . strtolower($animalType->name);
 
@@ -91,6 +93,30 @@ class AnimalSeeder extends Seeder
                         AnimalPicture::create([
                             'animal_id' => $animal->id,
                             'path' => str_replace('public/', '', $picture),
+                        ]);
+
+                        */
+
+                        /*
+
+                        $pictureURL = $faker->fakeImgUrl($width = 1000, $height = 1000);
+                        $pictureData = file_get_contents($picture);
+                        $pictureBase64 = base64_encode($pictureData);
+
+                        AnimalPicture::create([
+                            'animal_id' => $animal->id,
+                            'path' => $pictureBase64,
+                        ]);
+
+                        */
+
+                        $imageURL = $faker->fakeImgUrl($width = 1000, $height = 1000);
+                        $image = file_get_contents($imageURL);
+                        $imageBase64 = 'data:image/png;base64,' . base64_encode($image);
+
+                        AnimalPicture::create([
+                            'animal_id' => $animal->id,
+                            'path' => $imageBase64,
                         ]);
 
                     }

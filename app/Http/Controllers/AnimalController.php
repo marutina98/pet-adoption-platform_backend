@@ -106,6 +106,20 @@ class AnimalController extends Controller
 
             foreach ($data['pictures'] as $index => $picture) {
 
+                if ($picture->isValid()) {
+
+                    $image = file_get_contents($picture->getRealPath());
+                    $imageBase64 = 'data:image/png;base64,' . base64_encode($image);
+
+                    AnimalPicture::create([
+                        'animal_id' => $animal->id,
+                        'path' => $imageBase64,
+                    ]);
+
+                }
+
+                /*
+
                 $storedPath = $picture->store($animalTypeName, 'public');
                 $picturePath = 'storage/' . $storedPath;
 
@@ -122,6 +136,8 @@ class AnimalController extends Controller
                     'animal_id' => $animal->id,
                     'path' => $picturePath,
                 ]);
+
+                */
 
             }
 
