@@ -43,6 +43,8 @@ class PetAgencyController extends Controller
         // Updated Picture if Received
 
         if (request('picture')) {
+        
+            /*
 
             $data['picture'] = request('picture')->store('agencies', 'public');
             $picturePath = 'storage/' . $data['picture'];
@@ -53,6 +55,18 @@ class PetAgencyController extends Controller
             $picture->save();
 
             $data['picture'] = $picturePath;
+
+            */
+            
+            $picture = $data['picture'];
+            
+            if ($picture->isValid()) {
+
+                $image = file_get_contents($picture->getRealPath());
+                $imageBase64 = 'data:image/png;base64,' . base64_encode($image);
+                $data['picture' = $imageBase64;
+
+            } 
 
         }
 
@@ -90,6 +104,8 @@ class PetAgencyController extends Controller
         // Updated Picture if Received
 
         if (request('picture')) {
+        
+            /*
 
             $data['picture'] = request('picture')->store('agencies', 'public');
             $picturePath = 'storage/' . $data['picture'];
@@ -100,6 +116,18 @@ class PetAgencyController extends Controller
             $picture->save();
 
             $data['picture'] = $picturePath;
+            
+            */
+            
+            $picture = $data['picture'];
+            
+            if ($picture->isValid()) {
+
+                $image = file_get_contents($picture->getRealPath());
+                $imageBase64 = 'data:image/png;base64,' . base64_encode($image);
+                $data['picture' = $imageBase64;
+
+            } 
 
         }
 
