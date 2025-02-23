@@ -37,6 +37,8 @@ class UserSeeder extends Seeder
             ]);
 
             // PetAdopter Picture
+            
+            /*
 
             $adopterPictureFolder = 'public/storage/adopters';
 
@@ -45,13 +47,20 @@ class UserSeeder extends Seeder
             }
 
             $adopterPicture = $faker->fakeImg($dir = $adopterPictureFolder, $width = 1000, $height = 1000);
+            
+            */
+            
+            $adopterImageURL = $faker->fakeImgUrl($width = 1000, $height = 1000);
+            $adopterImage = file_get_contents($agencyImageURL);
+            $adopterImageBase64 = 'data:image/png;base64,' . base64_encode($agencyImage);
 
             PetAdopter::create([
                 'user_id' => $adopter->id,
                 'name' => $faker->name(),
                 'phone' => $faker->phoneNumber(),
                 'address' => $faker->address(),
-                'picture' => str_replace('public/', '', $adopterPicture),
+                /* 'picture' => str_replace('public/', '', $adopterPicture), */
+                'picture' => $adopterImageBase64,
             ]);
 
             // PetAgency
@@ -63,6 +72,8 @@ class UserSeeder extends Seeder
             ]);
 
             // Pet Agency Picture
+            
+            /*
 
             $agencyPictureFolder = 'public/storage/agencies';
 
@@ -71,6 +82,12 @@ class UserSeeder extends Seeder
             }
 
             $agencyPicture = $faker->fakeImg($dir = $agencyPictureFolder, $width = 1000, $height = 1000);
+            
+            */
+            
+            $agencyImageURL = $faker->fakeImgUrl($width = 1000, $height = 1000);
+            $agencyImage = file_get_contents($agencyImageURL);
+            $agencyImageBase64 = 'data:image/png;base64,' . base64_encode($agencyImage);
 
             PetAgency::create([
                 'user_id' => $agency->id,
@@ -79,7 +96,8 @@ class UserSeeder extends Seeder
                 'address' => $faker->address(),
                 'website' => $faker->url(),
                 'description' => $faker->realTextBetween($minNbChars = 200, $maxNbChars = 1000, $indexSize = 2),
-                'picture' => str_replace('public/', '', $agencyPicture),
+                /* 'picture' => str_replace('public/', '', $agencyPicture), */
+                'picture' => $agencyImageBase64,
             ]);
 
         }
